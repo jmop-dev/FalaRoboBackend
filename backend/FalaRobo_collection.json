@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "5ef7ba0e-75af-4e1b-8b07-6d07f31ea6af",
+		"name": "FalaRobo — Full Backend",
+		"description": "REST endpoints and WebSocket testing for the FalaRobo backend.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49032859",
+		"_collection_link": "https://jmop-dev-9339803.postman.co/workspace/jmop-dev's-Workspace~58ec7d45-603b-4146-8d64-fc4331764f47/collection/49032859-5ef7ba0e-75af-4e1b-8b07-6d07f31ea6af?action=share&source=collection_link&creator=49032859"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Pressure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bar\": 5\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/control/pressure",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"control",
+						"pressure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start / Stop",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"running\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/control/start",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"control",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sensors (HTTP helper)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"small\": { \"1S1\": false, \"1S2\": true },\n  \"big\": { \"2S1\": true, \"2S2\": false },\n  \"positions\": { \"small\": \"Forwards\", \"big\": \"Backwards\" }\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/sensors",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"sensors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get State",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/state",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AI Snapshot",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ai/snapshot",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ai",
+						"snapshot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WebSocket — How to connect",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ws_url}}",
+					"host": [
+						"{{ws_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000"
+		},
+		{
+			"key": "ws_url",
+			"value": "ws://127.0.0.1:8000/ws"
+		}
+	]
+}

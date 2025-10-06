@@ -165,19 +165,24 @@ async def set_start(body: StartIn, x_user: str | None = Header(default=None)):
 @app.get("/ai/snapshot")
 async def ai_snapshot():
     snap = _snapshot_payload()
-    forwarding = (snap["positions"]["small"] == "Forwards") or (snap["positions"]["big"] == "Forwards")
-    backwards  = (snap["positions"]["small"] == "Backwards") or (snap["positions"]["big"] == "Backwards")
+
+    # movimentos individuais
+    movements = {
+        "small": snap["positions"]["small"],
+        "big": snap["positions"]["big"]
+    }
+
     return {
         "bar": snap["bar"],
         "running": snap["running"],
         "positions": dict(snap["positions"]),
-        "FOWARDING": forwarding,  # keep legacy spelling
-        "BACKWARDS": backwards,
+        "movements": movements,
         "1S1": snap["sensors"].get("1S1", False),
         "1S2": snap["sensors"].get("1S2", False),
         "2S1": snap["sensors"].get("2S1", False),
-        "2S2": snap["sensors"].get("2S2", False),
+        "2S2": snap["sensors"].get("2S2", False)
     }
+
 
 # HTTP endpoint to update sensors+positions
 @app.post("/sensors")
